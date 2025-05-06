@@ -1,9 +1,9 @@
 /*
 Theme Name: Thème FSE G2RD Agence Web
-Theme URI: 
+Theme URI: https://g2rd.fr/themes/g2rd-agence-web
 Author: Sebastien GERARD
 Author URI: https://g2rd.fr
-Description: Thème agence pour le Full Site Editing
+Description: Un thème Full Site Editing (FSE) moderne et flexible pour les agences web. Ce thème offre une expérience d'édition complète avec des blocs personnalisés, des animations fluides et une interface intuitive. Idéal pour les sites vitrines, portfolios et sites d'agences web.
 Requires at least: 6.5
 Tested up to: 6.5
 Requires PHP: 8.0
@@ -11,6 +11,7 @@ Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: G2RD
+Tags: full-site-editing, editor-style, block-styles, wide-blocks, custom-colors, custom-menu, custom-logo, featured-images, footer-widgets, portfolio, blog, translation-ready, rtl-language-support, threaded-comments, accessibility-ready
 */
 @keyframes reveal {
   from {

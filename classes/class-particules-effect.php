@@ -1,21 +1,30 @@
 <?php
 /**
- * Classe pour gérer l'effet de particules
+ * Gestion de l'effet de particules interactif
  *
  * @package G2RD
+ * @since 1.0.0
  */
 
 namespace G2RD;
 
 /**
- * Class ParticlesEffect
+ * Gestionnaire de l'effet de particules
  *
- * Ajoute l'effet de particules et les contrôles dans l'éditeur
+ * Cette classe gère l'ajout et la configuration de l'effet de particules
+ * interactif dans les blocs de type group, ainsi que les contrôles
+ * associés dans l'éditeur de blocs.
+ *
+ * @package G2RD
+ * @since 1.0.0
  */
 class ParticlesEffect
 {
     /**
-     * Enregistrer les hooks
+     * Enregistre les hooks nécessaires pour l'effet de particules
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerHooks(): void
     {
@@ -30,7 +39,10 @@ class ParticlesEffect
     }
 
     /**
-     * Enregistrer les contrôles pour l'éditeur
+     * Enregistre et charge les contrôles de l'effet de particules dans l'éditeur
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerEditorControls(): void
     {
@@ -55,7 +67,10 @@ class ParticlesEffect
     }
     
     /**
-     * Ajouter des styles CSS pour positionner les panneaux dans l'éditeur
+     * Ajoute les styles CSS pour les contrôles de l'effet de particules dans l'éditeur
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function addEditorStyles(): void
     {
@@ -83,10 +98,14 @@ class ParticlesEffect
     }
 
     /**
-     * Ajouter l'attribut data-particles aux blocs concernés
+     * Ajoute l'attribut data-particles aux blocs de type group
      *
+     * Cette méthode ajoute l'attribut data-particles="true" aux blocs
+     * de type group qui ont l'effet de particules activé.
+     *
+     * @since 1.0.0
      * @param string $block_content Le contenu HTML du bloc
-     * @param array  $block         Les informations du bloc
+     * @param array  $block        Les informations du bloc
      * @return string Le contenu HTML modifié
      */
     public function addParticlesAttribute(string $block_content, array $block): string

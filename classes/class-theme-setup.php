@@ -4,9 +4,22 @@ namespace G2RD;
 
 /**
  * Classe principale pour la configuration du thème
+ * 
+ * Cette classe gère l'initialisation et la configuration de base du thème,
+ * incluant l'enregistrement des assets, la configuration des types MIME,
+ * et la mise en place des fonctionnalités du thème.
+ *
+ * @package G2RD
+ * @since 1.0.0
  */
 class ThemeSetup
 {
+    /**
+     * Enregistre tous les hooks nécessaires pour le thème
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerHooks(): void
     {
         \add_action('wp_enqueue_scripts', [$this, 'registerAssets']);
@@ -18,13 +31,24 @@ class ThemeSetup
         $this->setupFeatures();
     }
 
-    # Charger les styles et les scripts
+    /**
+     * Enregistre et charge les styles et scripts principaux du thème
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerAssets(): void
     {
         \wp_enqueue_style('main', \get_stylesheet_uri(), [], \wp_get_theme()->get('Version'));
     }
 
-    # Autoriser les SVG et le WebP
+    /**
+     * Ajoute le support pour les fichiers SVG et WebP
+     *
+     * @since 1.0.0
+     * @param array $mimes Liste des types MIME autorisés
+     * @return array Liste mise à jour des types MIME
+     */
     public function allowMimeTypes($mimes): array
     {
         $mimes['svg'] = 'image/svg+xml';
@@ -33,7 +57,16 @@ class ThemeSetup
         return $mimes;
     }
 
-    # Autoriser les SVG
+    /**
+     * Configure la validation des types de fichiers pour SVG et WebP
+     *
+     * @since 1.0.0
+     * @param array $types Types de fichiers
+     * @param string $file Chemin du fichier
+     * @param string $filename Nom du fichier
+     * @param array $mimes Types MIME
+     * @return array Types de fichiers mis à jour
+     */
     public function allowFileTypes($types, $file, $filename, $mimes): array
     {
         if (false !== strpos($filename, '.webp')) {
@@ -44,7 +77,12 @@ class ThemeSetup
         return $types;
     }
 
-    # Activer et désactiver des fonctionnalités
+    /**
+     * Configure les fonctionnalités de base du thème
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function setupFeatures(): void
     {
         # Retirer la suggestion de blocs
@@ -66,6 +104,12 @@ class ThemeSetup
         \remove_filter('comment_text_rss', 'wp_staticize_emoji');
     }
 
+    /**
+     * Enregistre les catégories de patterns de blocs personnalisés
+     *
+     * @since 1.0.0
+     * @return void
+     */
     function g2rd_register_block_patterns(): void
     {
         // Enregistrer les catégories

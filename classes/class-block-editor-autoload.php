@@ -2,8 +2,23 @@
 
 namespace G2RD;
 
+/**
+ * Gestion de l'auto-chargement des blocs et des assets de l'éditeur
+ * 
+ * Cette classe gère l'enregistrement automatique des blocs personnalisés,
+ * le chargement des styles de blocs et la composition du theme.json.
+ *
+ * @package G2RD
+ * @since 1.0.0
+ */
 class BlockEditorAutoload
 {
+    /**
+     * Enregistre tous les hooks nécessaires pour l'éditeur de blocs
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerHooks(): void
     {
         \add_action('init', [$this, 'registerCustomBlocks']);
@@ -11,7 +26,12 @@ class BlockEditorAutoload
         \add_filter('wp_theme_json_data_theme', [$this, 'composeThemeJson']);
     }
 
-    # Déclarer automatiquement les blocs sur-mesure du dossier /blocks/ 
+    /**
+     * Enregistre automatiquement les blocs personnalisés du dossier /blocks/
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerCustomBlocks(): void
     {
         $folders = \glob(\get_template_directory() . '/blocks/*/');
@@ -22,7 +42,12 @@ class BlockEditorAutoload
         }
     }
 
-    # Charger automatiquement les styles de blocs du dossier /assets/css/
+    /**
+     * Charge automatiquement les styles CSS des blocs
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerBlocksAssets(): void
     {
         $files = \glob(\get_template_directory() . '/assets/css/*.css');
@@ -43,7 +68,16 @@ class BlockEditorAutoload
         }
     }
 
-    # Recomposer le theme.json à partir des fichiers intermédiaires
+    /**
+     * Compose le theme.json à partir des fichiers de configuration
+     *
+     * Cette méthode fusionne les fichiers theme-styles.json, theme-settings.json
+     * et les variations de style pour créer une configuration complète.
+     *
+     * @since 1.0.0
+     * @param \WP_Theme_JSON_Data $theme_json Données du theme.json actuel
+     * @return \WP_Theme_JSON_Data Données mises à jour du theme.json
+     */
     public function composeThemeJson($theme_json): mixed
     {
         # Charger les JSON secondaires

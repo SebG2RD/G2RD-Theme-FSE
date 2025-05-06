@@ -1,0 +1,17 @@
+= 1.0.0 =
+* Version initiale
+* Support complet du Full Site Editing
+* Intégration des animations GSAP
+* Effets de particules interactifs
+* Blocs personnalisés pour agences web
+* Support multilingue
+* Optimisations de performance
+* Interface d'administration personnalisée
+* Support des types de contenu personnalisés
+* Configuration JSON pour les blocs et patterns
+* Animations et effets visuels avancés
+* Design responsive
+* Support RTL
+* Accessibilité WCAG 2.1
+* Compatibilité PHP 8.0+
+* Compatibilité WordPress 6.5+ 

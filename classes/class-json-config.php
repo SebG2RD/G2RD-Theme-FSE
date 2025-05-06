@@ -2,12 +2,32 @@
 
 namespace G2RD;
 
+/**
+ * Gestion de la configuration JSON du thème
+ * 
+ * Cette classe gère le chargement et l'application des configurations
+ * définies dans le fichier configuration.json, notamment pour les blocs,
+ * les patterns et les styles.
+ *
+ * @package G2RD
+ * @since 1.0.0
+ */
 class JsonConfig
 {
-    # La configuration récupérée en JSON
+    /**
+     * Données de configuration chargées depuis le fichier JSON
+     *
+     * @since 1.0.0
+     * @var array
+     */
     public $configurationData = [];
 
-    # Mise en place des hooks impactés par la configuration
+    /**
+     * Enregistre les hooks nécessaires et charge la configuration
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerHooks(): void
     {
         # Charger le fichier de configuration et stocker les données
@@ -15,7 +35,6 @@ class JsonConfig
 
         # Assigner les hooks pour appliquer les différentes configurations
         foreach ($this->configurationData as $key => $data) {
-
             switch ($key) {
                 case 'registerBlocksCategories':
                     add_filter('block_categories_all', [$this, 'registerBlocksCategories']);
@@ -38,7 +57,13 @@ class JsonConfig
         }
     }
 
-    # Déclarer de nouvelles catégories pour les blocs sur-mesure
+    /**
+     * Enregistre de nouvelles catégories pour les blocs personnalisés
+     *
+     * @since 1.0.0
+     * @param array $categories Catégories de blocs existantes
+     * @return array Liste mise à jour des catégories de blocs
+     */
     public function registerBlocksCategories($categories): array
     {
         $block_categories_to_register = $this->getConfigDataByKey('registerBlocksCategories');
@@ -57,7 +82,12 @@ class JsonConfig
         return array_merge($new_categories, $categories);
     }
 
-    # Déclarer de nouvelles catégories de compositions
+    /**
+     * Enregistre de nouvelles catégories de patterns
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerPatternsCategories(): void
     {
         $patterns = $this->getConfigDataByKey('registerPatternsCategories');
@@ -68,7 +98,12 @@ class JsonConfig
         }
     }
 
-    # Retirer certains blocs par défaut de l'éditeur
+    /**
+     * Désactive certains blocs par défaut dans l'éditeur
+     *
+     * @since 1.0.0
+     * @return array Liste des blocs autorisés
+     */
     public function deregisterBlocks(): array
     {
         $blocks_to_disable = $this->getConfigDataByKey('deregisterBlocks');
@@ -78,7 +113,12 @@ class JsonConfig
         return array_values(array_diff($blocks, $blocks_to_disable));
     }
 
-    # Retirer les feuilles de styles natives de certains blocs
+    /**
+     * Désactive les feuilles de styles natives de certains blocs
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function deregisterBlocksStylesheets(): void
     {
         $blocks_stylesheets_to_disable = $this->getConfigDataByKey('deregisterBlocksStylesheets');
@@ -89,7 +129,12 @@ class JsonConfig
         }
     }
 
-    # Retirer certains styles de blocs par défaut
+    /**
+     * Désactive certains styles de blocs par défaut
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function deregisterBlocksStyles(): void
     {
         $blocks_styles_to_disable = $this->getConfigDataByKey('deregisterBlocksStyles');
@@ -110,7 +155,13 @@ class JsonConfig
         wp_add_inline_script('unregister-styles', $inline_js, 'before');
     }
 
-    # Charger le fichier de configuration JSON
+    /**
+     * Charge et parse le fichier de configuration JSON
+     *
+     * @since 1.0.0
+     * @return array Données de configuration
+     * @throws \Exception Si le fichier de configuration est invalide
+     */
     protected function loadJsonConfig(): array
     {
         $filename = 'configuration.json';
@@ -132,7 +183,13 @@ class JsonConfig
         return $config;
     }
 
-    # Récupérer une clé de la configuration 
+    /**
+     * Récupère les données de configuration pour une clé donnée
+     *
+     * @since 1.0.0
+     * @param string $key Clé de configuration
+     * @return array Données de configuration pour la clé
+     */
     protected function getConfigDataByKey($key): array
     {
         return $this->configurationData[$key] ?? [];

@@ -3,27 +3,45 @@
 namespace G2RD;
 
 /**
- * Classe qui gère la personnalisation de l'interface d'administration WordPress
+ * Gestion de l'interface d'administration WordPress
+ * 
+ * Cette classe personnalise l'interface d'administration WordPress,
+ * notamment la page de connexion et le tableau de bord, avec le branding G2RD.
+ *
+ * @package G2RD
+ * @since 1.0.0
  */
 class ThemeAdmin
 {
     /**
      * Chemin du logo G2RD
+     *
+     * @since 1.0.0
+     * @var string
      */
     private const LOGO_PATH = '/assets/img/Nouveau-logo-G2RD-Agence-Web-blanc-Horizontale@3x.png';
     
     /**
      * Chemin de l'image de fond de la page de connexion
+     *
+     * @since 1.0.0
+     * @var string
      */
     private const BACKGROUND_IMAGE_PATH = '/assets/img/g2rd_image_admin.jpg';
     
     /**
      * URL du site G2RD
+     *
+     * @since 1.0.0
+     * @var string
      */
     private const G2RD_WEBSITE = 'https://g2rd.fr';
     
     /**
-     * Enregistrer tous les hooks nécessaires
+     * Enregistre tous les hooks nécessaires pour la personnalisation de l'admin
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerHooks(): void
     {
@@ -48,7 +66,10 @@ class ThemeAdmin
     }
     
     /**
-     * Obtenir l'URL du logo
+     * Obtient l'URL complète du logo G2RD
+     *
+     * @since 1.0.0
+     * @return string URL du logo
      */
     private function getLogoUrl(): string
     {
@@ -56,7 +77,10 @@ class ThemeAdmin
     }
     
     /**
-     * Obtenir l'URL de l'image de fond
+     * Obtient l'URL complète de l'image de fond
+     *
+     * @since 1.0.0
+     * @return string URL de l'image de fond
      */
     private function getBackgroundImageUrl(): string
     {
@@ -64,7 +88,10 @@ class ThemeAdmin
     }
     
     /**
-     * Charger les styles pour l'admin
+     * Enregistre et charge les styles CSS pour l'interface d'administration
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerAdminAssets(): void
     {
@@ -77,7 +104,10 @@ class ThemeAdmin
     }
 
     /**
-     * Charger les styles pour la page de connexion
+     * Enregistre et charge les styles CSS pour la page de connexion
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerLoginAssets(): void
     {
@@ -90,7 +120,10 @@ class ThemeAdmin
     }
     
     /**
-     * Personnaliser le logo de la page de connexion
+     * Personnalise le logo et le style de la page de connexion
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function customLoginLogo(): void
     {
@@ -129,7 +162,10 @@ class ThemeAdmin
     }
 
     /**
-     * URL personnalisée pour le logo de la page de connexion
+     * Définit l'URL du logo sur la page de connexion
+     *
+     * @since 1.0.0
+     * @return string URL de la page d'accueil
      */
     public function customLoginLogoUrl(): string
     {
@@ -137,7 +173,10 @@ class ThemeAdmin
     }
 
     /**
-     * Texte personnalisé pour le logo de la page de connexion
+     * Définit le texte alternatif du logo sur la page de connexion
+     *
+     * @since 1.0.0
+     * @return string Nom du site
      */
     public function customLoginLogoText(): string
     {
@@ -145,7 +184,10 @@ class ThemeAdmin
     }
     
     /**
-     * Ajouter un bouton vers le site G2RD après le formulaire de connexion
+     * Ajoute un bouton de redirection vers le site G2RD après le formulaire de connexion
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function addG2RDButton(): void
     {
@@ -165,7 +207,10 @@ class ThemeAdmin
     }
     
     /**
-     * Structure personnalisée pour la page de connexion
+     * Ajoute la structure HTML personnalisée pour la page de connexion
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function customLoginStructure(): void
     {
@@ -174,7 +219,10 @@ class ThemeAdmin
     }
 
     /**
-     * Pied de page personnalisé pour la page de connexion
+     * Ajoute le pied de page personnalisé pour la page de connexion
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function customLoginFooter(): void
     {
@@ -182,7 +230,10 @@ class ThemeAdmin
     }
     
     /**
-     * Personnaliser le logo WordPress dans l'admin
+     * Personnalise le logo WordPress dans la barre d'administration
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function customAdminLogo(): void
     {

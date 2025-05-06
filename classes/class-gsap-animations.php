@@ -3,12 +3,21 @@
 namespace G2RD;
 
 /**
- * Classe pour gérer les animations GSAP
+ * Gestion des animations GSAP (GreenSock Animation Platform)
+ * 
+ * Cette classe gère le chargement et la configuration des animations GSAP,
+ * à la fois sur le frontend et dans l'éditeur de blocs.
+ *
+ * @package G2RD
+ * @since 1.0.0
  */
 class GSAPAnimations
 {
     /**
-     * Enregistrer les hooks nécessaires
+     * Enregistre les hooks nécessaires pour les animations GSAP
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerHooks(): void
     {
@@ -20,7 +29,13 @@ class GSAPAnimations
     }
 
     /**
-     * Enregistrer les scripts pour le frontend
+     * Enregistre et charge les scripts GSAP pour le frontend
+     * 
+     * Charge les bibliothèques GSAP et ScrollTrigger depuis CDN,
+     * ainsi que le script personnalisé d'animations.
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerFrontendScripts(): void
     {
@@ -51,7 +66,13 @@ class GSAPAnimations
     }
 
     /**
-     * Enregistrer les scripts pour l'éditeur
+     * Enregistre et charge les scripts pour les contrôles d'animation dans l'éditeur
+     * 
+     * Charge le script de contrôle des blocs et ajoute les données
+     * localisées pour les options d'animation disponibles.
+     *
+     * @since 1.0.0
+     * @return void
      */
     public function registerEditorScripts(): void
     {

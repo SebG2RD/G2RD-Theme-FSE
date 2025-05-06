@@ -26,6 +26,9 @@ require_once __DIR__ . '/classes/class-particules-effect.php';
  */
 function bootstrap_theme()
 {
+    // Charger les traductions
+    load_theme_textdomain('G2RD', get_template_directory() . '/languages');
+
     // Instancier et initialiser les classes principales
     $classes = [
         ThemeSetup::class,

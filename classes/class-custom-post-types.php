@@ -2,8 +2,23 @@
 
 namespace G2RD;
 
+/**
+ * Gestion des types de contenu personnalisés (CPT) et taxonomies
+ * 
+ * Cette classe gère la création et la configuration des types de contenu personnalisés,
+ * notamment le portfolio, ainsi que leurs taxonomies associées et métadonnées.
+ *
+ * @package G2RD
+ * @since 1.0.0
+ */
 class CPT
 {
+    /**
+     * Enregistre tous les hooks nécessaires pour les CPT
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerHooks(): void
     {
         add_action('init', [$this, 'registerPostTypes']);
@@ -13,7 +28,14 @@ class CPT
         add_action('init', [$this, 'registerBindingSources']);
     }
 
-    # Désactiver Gutenberg pour le CPT Portfolio
+    /**
+     * Désactive l'éditeur Gutenberg pour le type de contenu Portfolio
+     *
+     * @since 1.0.0
+     * @param bool $use_block_editor État actuel de l'éditeur de blocs
+     * @param string $post_type Type de contenu
+     * @return bool État modifié de l'éditeur de blocs
+     */
     public function disableGutenbergForPortfolio($use_block_editor, $post_type): bool
     {
         if ($post_type === 'portfolio') {
@@ -22,7 +44,12 @@ class CPT
         return $use_block_editor;
     }
 
-    # Déclarer des types de publication personnalisés
+    /**
+     * Enregistre les types de contenu personnalisés et leurs taxonomies
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerPostTypes(): void
     {
         # CPT « Portfolio »
@@ -66,7 +93,12 @@ class CPT
         register_taxonomy('type-projets', 'portfolio', $args);
     }
 
-    # Ajouter la boîte de métadonnées pour le lien
+    /**
+     * Ajoute une boîte de métadonnées pour le lien du portfolio
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function addPortfolioMetaBox(): void
     {
         add_meta_box(
@@ -79,7 +111,13 @@ class CPT
         );
     }
 
-    # Afficher le champ de lien dans la boîte de métadonnées
+    /**
+     * Affiche le champ de lien dans la boîte de métadonnées
+     *
+     * @since 1.0.0
+     * @param \WP_Post $post L'objet post actuel
+     * @return void
+     */
     public function renderPortfolioLinkMetaBox($post): void
     {
         // Récupérer la valeur existante du lien
@@ -94,7 +132,13 @@ class CPT
         echo '<p class="description">Entrez l\'URL complète du projet (ex: https://www.exemple.com)</p>';
     }
 
-    # Sauvegarder le lien en base de données
+    /**
+     * Sauvegarde le lien du portfolio en base de données
+     *
+     * @since 1.0.0
+     * @param int $post_id ID du post
+     * @return void
+     */
     public function savePortfolioMeta($post_id): void
     {
         // Vérifier le nonce
@@ -113,14 +157,24 @@ class CPT
         }
     }
 
-    # Déclarer des sources de données personnalisées pour le block binding
+    /**
+     * Enregistre les sources de données personnalisées pour le block binding
+     *
+     * @since 1.0.0
+     * @return void
+     */
     public function registerBindingSources(): void
     {
         // Enregistrer le shortcode
         add_shortcode('portfolio_link', [$this, 'portfolioLinkShortcode']);
     }
 
-    # Shortcode pour afficher le lien du portfolio
+    /**
+     * Shortcode pour afficher le lien du portfolio
+     *
+     * @since 1.0.0
+     * @return string URL du projet ou '#' si non définie
+     */
     public function portfolioLinkShortcode(): string
     {
         $post_id = get_the_ID();
